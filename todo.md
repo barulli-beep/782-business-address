@@ -45,7 +45,7 @@
 ## Pendente / Próximos Passos
 - [ ] Configurar PIX no dashboard Stripe (adicionar payment_method_types: ["pix"])
 - [ ] Configurar e-mail real (SMTP/Resend) para envio de confirmação ao cliente
-- [ ] Atualizar telefone, e-mail e CNPJ reais no Footer
+- [x] Atualizar telefone, e-mail e CNPJ reais no Footer
 - [ ] Ativar sandbox Stripe antes de 26/05/2026
 - [ ] Publicar o site via botão Publish no painel
 
@@ -58,3 +58,6 @@
 - [x] Corrigir texto do card de endereço fiscal (versão completa com PBH)
 - [x] Corrigir texto "Endereço Reconhecido" (adicionar prefeitura de BH)
 - [x] Atualizar logo/nome na Navbar e Footer
+
+## Ajustes v3
+- [x] Adicionar CNPJ 59.267.954/0001-08 no Footer

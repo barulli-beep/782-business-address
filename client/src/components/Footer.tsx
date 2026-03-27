@@ -106,7 +106,7 @@ export default function Footer() {
             © {new Date().getFullYear()} Hub Evolua — 782 Business Address. Todos os direitos reservados.
           </p>
           <p className="text-xs text-white/35" style={{ fontFamily: "Inter, sans-serif" }}>
-            Lucas T.B. — contato@hubevolua.com
+            CNPJ: 59.267.954/0001-08
           </p>
         </div>
       </div>
