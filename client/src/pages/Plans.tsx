@@ -25,14 +25,14 @@ export default function Plans() {
       {/* Header */}
       <section
         className="py-16 md:py-24 text-center"
-        style={{ background: "linear-gradient(135deg, oklch(0.13 0.03 240) 0%, oklch(0.20 0.05 240) 100%)" }}
+        style={{ background: "linear-gradient(135deg, oklch(0.18 0.06 240) 0%, oklch(0.25 0.07 240) 100%)" }}
       >
         <div className="container">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="text-xs font-semibold tracking-widest uppercase mb-3"
-            style={{ color: "oklch(0.72 0.12 75)", fontFamily: "Inter, sans-serif" }}
+            style={{ color: "oklch(0.65 0.14 145)", fontFamily: "Inter, sans-serif" }}
           >
             Planos e Preços
           </motion.p>
@@ -79,7 +79,7 @@ export default function Plans() {
           <div className="overflow-x-auto rounded-2xl border border-border bg-white shadow-sm">
             <table className="w-full text-sm" style={{ fontFamily: "Inter, sans-serif" }}>
               <thead>
-                <tr style={{ background: "oklch(0.15 0.04 240)" }}>
+                <tr style={{ background: "oklch(0.25 0.07 240)" }}>
                   <th className="text-left py-4 px-6 text-white/70 font-medium">Recurso</th>
                   {PLANS.map((plan) => (
                     <th key={plan.id} className="py-4 px-6 text-center">
@@ -102,7 +102,7 @@ export default function Plans() {
                     {[row.basico, row.premium, row.empresarial].map((val, j) => (
                       <td key={j} className="py-3.5 px-6 text-center">
                         {val ? (
-                          <Check className="w-4 h-4 mx-auto" style={{ color: "oklch(0.22 0.055 240)" }} />
+                          <Check className="w-4 h-4 mx-auto" style={{ color: "oklch(0.38 0.10 240)" }} />
                         ) : (
                           <span className="text-muted-foreground text-base">—</span>
                         )}
@@ -119,7 +119,7 @@ export default function Plans() {
       {/* FAQ teaser */}
       <section className="py-16 text-center">
         <div className="container">
-          <HelpCircle className="w-8 h-8 mx-auto mb-4" style={{ color: "oklch(0.72 0.12 75)" }} />
+          <HelpCircle className="w-8 h-8 mx-auto mb-4" style={{ color: "oklch(0.65 0.14 145)" }} />
           <h3 className="font-serif text-2xl font-semibold text-foreground mb-3">
             Ainda tem dúvidas?
           </h3>
@@ -131,7 +131,7 @@ export default function Plans() {
               <button
                 className="px-6 py-2.5 rounded-lg text-sm font-medium transition-colors"
                 style={{
-                  background: "oklch(0.22 0.055 240)",
+                  background: "oklch(0.38 0.10 240)",
                   color: "white",
                   border: "none",
                 }}
@@ -142,7 +142,7 @@ export default function Plans() {
             <Link href="/contato">
               <button
                 className="px-6 py-2.5 rounded-lg text-sm font-medium transition-colors border"
-                style={{ borderColor: "oklch(0.88 0.01 240)", color: "oklch(0.22 0.055 240)" }}
+                style={{ borderColor: "oklch(0.88 0.01 240)", color: "oklch(0.38 0.10 240)" }}
               >
                 Falar com alguém
               </button>

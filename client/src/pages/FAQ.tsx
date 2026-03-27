@@ -93,7 +93,7 @@ export default function FAQ() {
       {/* Header */}
       <section
         className="py-16 md:py-24 text-center"
-        style={{ background: "linear-gradient(135deg, oklch(0.13 0.03 240) 0%, oklch(0.20 0.05 240) 100%)" }}
+        style={{ background: "linear-gradient(135deg, oklch(0.18 0.06 240) 0%, oklch(0.25 0.07 240) 100%)" }}
       >
         <div className="container">
           <motion.div
@@ -101,7 +101,7 @@ export default function FAQ() {
             animate={{ opacity: 1 }}
             className="flex justify-center mb-4"
           >
-            <HelpCircle className="w-10 h-10" style={{ color: "oklch(0.72 0.12 75)" }} />
+            <HelpCircle className="w-10 h-10" style={{ color: "oklch(0.65 0.14 145)" }} />
           </motion.div>
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
@@ -137,7 +137,7 @@ export default function FAQ() {
               >
                 <h2
                   className="text-xs font-semibold tracking-widest uppercase mb-6"
-                  style={{ color: "oklch(0.72 0.12 75)", fontFamily: "Inter, sans-serif" }}
+                  style={{ color: "oklch(0.65 0.14 145)", fontFamily: "Inter, sans-serif" }}
                 >
                   {category.category}
                 </h2>
@@ -189,7 +189,7 @@ export default function FAQ() {
               <button
                 className="px-6 py-2.5 rounded-lg text-sm font-medium flex items-center gap-2"
                 style={{
-                  background: "oklch(0.22 0.055 240)",
+                  background: "oklch(0.38 0.10 240)",
                   color: "white",
                   border: "none",
                 }}
@@ -203,7 +203,7 @@ export default function FAQ() {
                 className="px-6 py-2.5 rounded-lg text-sm font-medium border transition-colors"
                 style={{
                   borderColor: "oklch(0.88 0.01 240)",
-                  color: "oklch(0.22 0.055 240)",
+                  color: "oklch(0.38 0.10 240)",
                   background: "white",
                 }}
               >

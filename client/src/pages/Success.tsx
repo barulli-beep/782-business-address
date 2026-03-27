@@ -29,7 +29,7 @@ export default function Success() {
             className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6"
             style={{ background: "oklch(0.72 0.12 75 / 0.15)" }}
           >
-            <CheckCircle className="w-8 h-8" style={{ color: "oklch(0.72 0.12 75)" }} />
+            <CheckCircle className="w-8 h-8" style={{ color: "oklch(0.65 0.14 145)" }} />
           </motion.div>
 
           <h1 className="font-serif text-3xl font-bold text-foreground mb-2">
@@ -45,11 +45,11 @@ export default function Success() {
           {order && (
             <div
               className="rounded-xl p-6 mb-8 text-left"
-              style={{ background: "oklch(0.15 0.04 240)" }}
+              style={{ background: "oklch(0.25 0.07 240)" }}
             >
               <h2
                 className="text-xs font-semibold tracking-widest uppercase mb-4"
-                style={{ color: "oklch(0.72 0.12 75)", fontFamily: "Inter, sans-serif" }}
+                style={{ color: "oklch(0.65 0.14 145)", fontFamily: "Inter, sans-serif" }}
               >
                 Detalhes do Contrato
               </h2>
@@ -70,7 +70,7 @@ export default function Success() {
                 )}
                 <div className="flex justify-between">
                   <span className="text-sm text-white/50" style={{ fontFamily: "Inter, sans-serif" }}>Valor mensal</span>
-                  <span className="text-sm font-bold" style={{ color: "oklch(0.72 0.12 75)", fontFamily: "Inter, sans-serif" }}>
+                  <span className="text-sm font-bold" style={{ color: "oklch(0.65 0.14 145)", fontFamily: "Inter, sans-serif" }}>
                     R$ {Number(order.planPrice).toFixed(2).replace(".", ",")}
                   </span>
                 </div>
@@ -83,7 +83,7 @@ export default function Success() {
               className="flex items-start gap-3 p-4 rounded-xl text-left"
               style={{ background: "oklch(0.97 0.005 240)", border: "1px solid oklch(0.88 0.01 240)" }}
             >
-              <Mail className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "oklch(0.22 0.055 240)" }} />
+              <Mail className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "oklch(0.38 0.10 240)" }} />
               <div>
                 <p className="text-sm font-medium text-foreground">Verifique seu e-mail</p>
                 <p className="text-xs text-muted-foreground mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>
@@ -95,7 +95,7 @@ export default function Success() {
               className="flex items-start gap-3 p-4 rounded-xl text-left"
               style={{ background: "oklch(0.97 0.005 240)", border: "1px solid oklch(0.88 0.01 240)" }}
             >
-              <MapPin className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "oklch(0.22 0.055 240)" }} />
+              <MapPin className="w-5 h-5 shrink-0 mt-0.5" style={{ color: "oklch(0.38 0.10 240)" }} />
               <div>
                 <p className="text-sm font-medium text-foreground">Seu endereço fiscal</p>
                 <p className="text-xs text-muted-foreground mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>
@@ -110,7 +110,7 @@ export default function Success() {
               size="lg"
               className="px-8 font-semibold"
               style={{
-                background: "linear-gradient(135deg, oklch(0.22 0.055 240), oklch(0.15 0.04 240))",
+                background: "linear-gradient(135deg, oklch(0.38 0.10 240), oklch(0.25 0.07 240))",
                 color: "white",
                 border: "none",
               }}

@@ -48,3 +48,13 @@
 - [ ] Atualizar telefone, e-mail e CNPJ reais no Footer
 - [ ] Ativar sandbox Stripe antes de 26/05/2026
 - [ ] Publicar o site via botão Publish no painel
+
+## Ajustes de Identidade Visual e Textos (v2)
+- [x] Atualizar paleta de cores para identidade EvoHub (azul #2D4A7A + verde #5BAD6F)
+- [x] Trocar nome do site para "Hub Evolua" / "782 Business Address by Hub Evolua"
+- [x] Atualizar telefone para (31) 9 9393-3934
+- [x] Atualizar e-mail para contato@hubevolua.com
+- [x] Corrigir texto: "notificação por chamada telefônica (através do interfone)"
+- [x] Corrigir texto do card de endereço fiscal (versão completa com PBH)
+- [x] Corrigir texto "Endereço Reconhecido" (adicionar prefeitura de BH)
+- [x] Atualizar logo/nome na Navbar e Footer
