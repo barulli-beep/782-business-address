@@ -43,11 +43,11 @@
 - [x] Vitest: auth.logout (existente)
 
 ## Pendente / Próximos Passos
-- [ ] Configurar PIX no dashboard Stripe (adicionar payment_method_types: ["pix"])
-- [ ] Configurar e-mail real (SMTP/Resend) para envio de confirmação ao cliente
+- [x] Configurar PIX no dashboard Stripe (adicionar payment_method_types: ["pix"])
+- [x] Configurar e-mail real (SMTP/Resend) para envio de confirmação ao cliente
 - [x] Atualizar telefone, e-mail e CNPJ reais no Footer
-- [ ] Ativar sandbox Stripe antes de 26/05/2026
-- [ ] Publicar o site via botão Publish no painel
+- [x] Ativar sandbox Stripe antes de 26/05/2026
+- [x] Publicar o site via botão Publish no painel
 
 ## Ajustes de Identidade Visual e Textos (v2)
 - [x] Atualizar paleta de cores para identidade EvoHub (azul #2D4A7A + verde #5BAD6F)
