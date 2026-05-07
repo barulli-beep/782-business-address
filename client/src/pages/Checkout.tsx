@@ -210,8 +210,8 @@ export default function Checkout() {
                   disabled={createSession.isPending}
                   className="mt-2 w-full py-3 text-base font-semibold"
                   style={{
-                    background: "linear-gradient(135deg, oklch(0.65 0.14 145), oklch(0.55 0.14 145))",
-                    color: "white",
+                    background: "linear-gradient(135deg, oklch(0.72 0.12 75), oklch(0.65 0.14 75))",
+                    color: "oklch(0.15 0.03 75)",
                     border: "none",
                   }}
                 >
@@ -250,7 +250,7 @@ export default function Checkout() {
           >
             <div
               className="rounded-2xl p-7 sticky top-24"
-              style={{ background: "oklch(0.25 0.07 240)" }}
+              style={{ background: "oklch(0.15 0.04 240)" }}
             >
               <h2
                 className="font-medium text-white/60 text-xs tracking-widest uppercase mb-5"
@@ -281,7 +281,7 @@ export default function Checkout() {
                       <svg className="w-2.5 h-2.5" viewBox="0 0 10 10" fill="none">
                         <path
                           d="M2 5l2.5 2.5L8 3"
-                          stroke="oklch(0.65 0.14 145)"
+                          stroke="oklch(0.72 0.12 75)"
                           strokeWidth="1.5"
                           strokeLinecap="round"
                           strokeLinejoin="round"
@@ -311,7 +311,7 @@ export default function Checkout() {
                   </span>
                   <span
                     className="font-serif text-3xl font-bold"
-                    style={{ color: "oklch(0.65 0.14 145)" }}
+                    style={{ color: "oklch(0.72 0.12 75)" }}
                   >
                     {plan.priceLabel}
                   </span>

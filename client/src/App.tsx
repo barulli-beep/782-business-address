@@ -12,7 +12,6 @@ import Checkout from "./pages/Checkout";
 import Success from "./pages/Success";
 import FAQ from "./pages/FAQ";
 import Contact from "./pages/Contact";
-import Questionnaire from "./pages/Questionnaire";
 
 function Router() {
   return (
@@ -23,7 +22,6 @@ function Router() {
       <Route path="/sucesso" component={Success} />
       <Route path="/faq" component={FAQ} />
       <Route path="/contato" component={Contact} />
-      <Route path="/cadastro" component={Questionnaire} />
       <Route path="/404" component={NotFound} />
       <Route component={NotFound} />
     </Switch>

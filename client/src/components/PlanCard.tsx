@@ -21,14 +21,14 @@ export default function PlanCard({ plan, index = 0 }: PlanCardProps) {
           ? "shadow-2xl ring-2 ring-[var(--gold)] scale-[1.02]"
           : "shadow-md border border-border"
       }`}
-      style={{ background: plan.highlight ? "oklch(0.25 0.07 240)" : "white" }}
+      style={{ background: plan.highlight ? "oklch(0.15 0.04 240)" : "white" }}
     >
       {plan.badge && (
         <div
           className="absolute top-0 left-0 right-0 py-1.5 text-center text-xs font-semibold tracking-widest uppercase"
           style={{
-            background: "linear-gradient(135deg, oklch(0.65 0.14 145), oklch(0.55 0.14 145))",
-            color: "white",
+            background: "linear-gradient(135deg, oklch(0.72 0.12 75), oklch(0.65 0.14 75))",
+            color: "oklch(0.15 0.03 75)",
             fontFamily: "Inter, sans-serif",
           }}
         >
@@ -89,7 +89,7 @@ export default function PlanCard({ plan, index = 0 }: PlanCardProps) {
               >
                 <Check
                   className="w-2.5 h-2.5"
-                  style={{ color: plan.highlight ? "oklch(0.65 0.14 145)" : "oklch(0.38 0.10 240)" }}
+                  style={{ color: plan.highlight ? "oklch(0.72 0.12 75)" : "oklch(0.22 0.055 240)" }}
                 />
               </div>
               <span
@@ -111,12 +111,12 @@ export default function PlanCard({ plan, index = 0 }: PlanCardProps) {
             style={
               plan.highlight
                 ? {
-                    background: "linear-gradient(135deg, oklch(0.65 0.14 145), oklch(0.55 0.14 145))",
-                    color: "white",
+                    background: "linear-gradient(135deg, oklch(0.72 0.12 75), oklch(0.65 0.14 75))",
+                    color: "oklch(0.15 0.03 75)",
                     border: "none",
                   }
                 : {
-                    background: "oklch(0.38 0.10 240)",
+                    background: "oklch(0.22 0.055 240)",
                     color: "white",
                     border: "none",
                   }

@@ -3,8 +3,6 @@ import type { Express, Request, Response } from "express";
 import express from "express";
 import { updateOrderStatus, getOrderByStripeSession } from "./db";
 import { notifyOwner } from "./_core/notification";
-import { sendEmail } from "./_core/email";
-import { emailTemplates } from "./emailTemplates";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: "2026-03-25.dahlia",
@@ -161,27 +159,6 @@ export function registerStripeWebhook(app: Express) {
                 title: `🎉 Novo cliente: ${order.fullName} – Plano ${order.planName}`,
                 content: buildOwnerNotification(order, sessionId),
               });
-
-              // Send email to customer
-              try {
-                const questionnairLink = 'https://busaddress-an8uw3gx.manus.space/cadastro';
-                await sendEmail({
-                  to: order.email,
-                  ...emailTemplates.customerConfirmation(order.fullName, order.planName, questionnairLink),
-                });
-              } catch (emailErr) {
-                console.error('[Webhook] Failed to send customer email:', emailErr);
-              }
-
-              // Send email to seller
-              try {
-                await sendEmail({
-                  to: 'contato@hubevolua.com',
-                  ...emailTemplates.sellerConfirmation(order.fullName, order.email, order.phone, order.planName),
-                });
-              } catch (emailErr) {
-                console.error('[Webhook] Failed to send seller email:', emailErr);
-              }
 
               console.log(
                 `[Webhook] Order ${order.id} confirmed for ${order.email}`

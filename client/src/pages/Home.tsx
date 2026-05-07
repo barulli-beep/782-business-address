@@ -28,7 +28,7 @@ const services = [
     icon: Building2,
     title: "Endereço Fiscal Virtual",
     description:
-      "Use nosso endereço na Rua Conde de Linhares para registrar sua empresa. Endereço fiscal do seu CNPJ, contratos e documentos oficiais serão recebidos prontamente. Totalmente legal, reconhecido pela Receita Federal e PBH.",
+      "Use nosso endereço na Rua Conde de Linhares para registrar sua empresa no CNPJ, contratos e documentos oficiais. Totalmente legal e reconhecido pela Receita Federal.",
   },
   {
     icon: MailOpen,
@@ -40,7 +40,7 @@ const services = [
     icon: Bell,
     title: "Notificação em Tempo Real",
     description:
-      "Quando uma correspondência chega, você é notificado imediatamente por chamada telefônica (através do interfone) no seu celular e pode liberar o acesso remotamente.",
+      "Quando uma correspondência chega, você é notificado imediatamente via interfone no seu celular e pode liberar o acesso remotamente.",
   },
 ];
 
@@ -53,7 +53,7 @@ const differentials = [
   {
     icon: ShieldCheck,
     title: "Endereço Reconhecido",
-    description: "Endereço aceito pela Receita Federal, cartórios e prefeitura de BH.",
+    description: "Endereço aceito pela Receita Federal e cartórios de BH.",
   },
   {
     icon: MapPin,
@@ -75,7 +75,7 @@ export default function Home() {
         className="relative min-h-screen flex items-center justify-center overflow-hidden"
         style={{
           background:
-            "linear-gradient(135deg, oklch(0.18 0.06 240) 0%, oklch(0.25 0.07 240) 60%, oklch(0.18 0.04 240) 100%)",
+            "linear-gradient(135deg, oklch(0.13 0.03 240) 0%, oklch(0.20 0.05 240) 60%, oklch(0.18 0.04 240) 100%)",
         }}
       >
         {/* Decorative gold accent */}
@@ -83,7 +83,7 @@ export default function Home() {
           className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10 pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.65 0.14 145) 0%, transparent 70%)",
+              "radial-gradient(circle, oklch(0.72 0.12 75) 0%, transparent 70%)",
             transform: "translate(30%, -30%)",
           }}
         />
@@ -91,7 +91,7 @@ export default function Home() {
           className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-5 pointer-events-none"
           style={{
             background:
-              "radial-gradient(circle, oklch(0.65 0.14 145) 0%, transparent 70%)",
+              "radial-gradient(circle, oklch(0.72 0.12 75) 0%, transparent 70%)",
             transform: "translate(-30%, 30%)",
           }}
         />
@@ -110,7 +110,7 @@ export default function Home() {
               style={{
                 background: "oklch(0.72 0.12 75 / 0.15)",
                 border: "1px solid oklch(0.72 0.12 75 / 0.3)",
-                color: "oklch(0.80 0.10 145)",
+                color: "oklch(0.85 0.09 75)",
                 fontFamily: "Inter, sans-serif",
               }}
             >
@@ -124,7 +124,7 @@ export default function Home() {
               className="font-serif text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-tight"
             >
               Tenha um endereço fiscal em{" "}
-              <span style={{ color: "oklch(0.65 0.14 145)" }}>
+              <span style={{ color: "oklch(0.72 0.12 75)" }}>
                 Belo Horizonte
               </span>{" "}
               em poucos minutos
@@ -137,7 +137,7 @@ export default function Home() {
               style={{ fontFamily: "Inter, sans-serif" }}
             >
               Escolha seu plano, pague online e comece a usar imediatamente.
-              Endereço fiscal, caixa de correio e notificação por chamada telefônica —
+              Endereço fiscal, caixa de correio e notificação por interfone —
               tudo em um só lugar.
             </motion.p>
 
@@ -152,8 +152,8 @@ export default function Home() {
                   className="px-8 py-3 text-base font-semibold"
                   style={{
                     background:
-                      "linear-gradient(135deg, oklch(0.65 0.14 145), oklch(0.55 0.14 145))",
-                    color: "white",
+                      "linear-gradient(135deg, oklch(0.72 0.12 75), oklch(0.65 0.14 75))",
+                    color: "oklch(0.15 0.03 75)",
                     border: "none",
                   }}
                 >
@@ -191,7 +191,7 @@ export default function Home() {
                   >
                     <div
                       className="w-1.5 h-1.5 rounded-full"
-                      style={{ background: "oklch(0.65 0.14 145)" }}
+                      style={{ background: "oklch(0.72 0.12 75)" }}
                     />
                     {item}
                   </div>
@@ -223,7 +223,7 @@ export default function Home() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="text-xs font-semibold tracking-widest uppercase mb-3"
-              style={{ color: "oklch(0.65 0.14 145)", fontFamily: "Inter, sans-serif" }}
+              style={{ color: "oklch(0.72 0.12 75)", fontFamily: "Inter, sans-serif" }}
             >
               Nossos Serviços
             </motion.p>
@@ -249,11 +249,11 @@ export default function Home() {
               >
                 <div
                   className="w-12 h-12 rounded-xl flex items-center justify-center"
-                  style={{ background: "oklch(0.38 0.10 240 / 0.07)" }}
+                  style={{ background: "oklch(0.22 0.055 240 / 0.07)" }}
                 >
                   <service.icon
                     className="w-5 h-5"
-                    style={{ color: "oklch(0.38 0.10 240)" }}
+                    style={{ color: "oklch(0.22 0.055 240)" }}
                   />
                 </div>
                 <h3 className="font-serif text-xl font-semibold text-foreground">
@@ -274,7 +274,7 @@ export default function Home() {
       {/* ── DIFFERENTIALS ── */}
       <section
         className="py-20 md:py-28"
-        style={{ background: "oklch(0.20 0.06 240)" }}
+        style={{ background: "oklch(0.15 0.04 240)" }}
       >
         <div className="container">
           <div className="text-center mb-14">
@@ -284,7 +284,7 @@ export default function Home() {
               viewport={{ once: true }}
               className="font-serif text-3xl md:text-4xl font-semibold text-white"
             >
-            Por que escolher o EvoHub Business Address?
+              Por que escolher a 782 Business Address?
             </motion.h2>
           </div>
 
@@ -301,11 +301,11 @@ export default function Home() {
               >
                 <div
                   className="w-10 h-10 rounded-lg flex items-center justify-center"
-               style={{ background: "oklch(0.65 0.14 145 / 0.15)" }}
+                  style={{ background: "oklch(0.72 0.12 75 / 0.15)" }}
                 >
                   <item.icon
                     className="w-5 h-5"
-                    style={{ color: "oklch(0.65 0.14 145)" }}
+                    style={{ color: "oklch(0.72 0.12 75)" }}
                   />
                 </div>
                 <h4
@@ -335,7 +335,7 @@ export default function Home() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               className="text-xs font-semibold tracking-widest uppercase mb-3"
-              style={{ color: "oklch(0.65 0.14 145)", fontFamily: "Inter, sans-serif" }}
+              style={{ color: "oklch(0.72 0.12 75)", fontFamily: "Inter, sans-serif" }}
             >
               Planos e Preços
             </motion.p>
@@ -369,7 +369,7 @@ export default function Home() {
               <Button
                 variant="outline"
                 className="text-sm font-medium"
-                style={{ borderColor: "oklch(0.38 0.10 240)", color: "oklch(0.38 0.10 240)" }}
+                style={{ borderColor: "oklch(0.72 0.12 75)", color: "oklch(0.72 0.12 75)" }}
               >
                 Ver todos os detalhes dos planos
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -414,7 +414,7 @@ export default function Home() {
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center mx-auto font-serif font-bold text-lg"
                   style={{
-                    background: "linear-gradient(135deg, oklch(0.38 0.10 240), oklch(0.25 0.07 240))",
+                    background: "linear-gradient(135deg, oklch(0.22 0.055 240), oklch(0.15 0.04 240))",
                     color: "white",
                   }}
                 >
@@ -439,7 +439,7 @@ export default function Home() {
       <section
         className="py-20 md:py-28"
         style={{
-          background: "linear-gradient(135deg, oklch(0.18 0.06 240) 0%, oklch(0.25 0.07 240) 100%)",
+          background: "linear-gradient(135deg, oklch(0.13 0.03 240) 0%, oklch(0.20 0.05 240) 100%)",
         }}
       >
         <div className="container text-center">
@@ -471,8 +471,8 @@ export default function Home() {
                 size="lg"
                 className="px-10 py-3 text-base font-semibold"
                 style={{
-                  background: "linear-gradient(135deg, oklch(0.65 0.14 145), oklch(0.55 0.14 145))",
-                  color: "white",
+                  background: "linear-gradient(135deg, oklch(0.72 0.12 75), oklch(0.65 0.14 75))",
+                  color: "oklch(0.15 0.03 75)",
                   border: "none",
                 }}
               >

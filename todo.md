@@ -43,30 +43,8 @@
 - [x] Vitest: auth.logout (existente)
 
 ## Pendente / Próximos Passos
-- [x] Configurar PIX no dashboard Stripe (adicionar payment_method_types: ["pix"])
-- [x] Configurar e-mail real (SMTP/Resend) para envio de confirmação ao cliente
-- [x] Atualizar telefone, e-mail e CNPJ reais no Footer
-- [x] Ativar sandbox Stripe antes de 26/05/2026
-- [x] Publicar o site via botão Publish no painel
-
-## Ajustes de Identidade Visual e Textos (v2)
-- [x] Atualizar paleta de cores para identidade EvoHub (azul #2D4A7A + verde #5BAD6F)
-- [x] Trocar nome do site para "Hub Evolua" / "782 Business Address by Hub Evolua"
-- [x] Atualizar telefone para (31) 9 9393-3934
-- [x] Atualizar e-mail para contato@hubevolua.com
-- [x] Corrigir texto: "notificação por chamada telefônica (através do interfone)"
-- [x] Corrigir texto do card de endereço fiscal (versão completa com PBH)
-- [x] Corrigir texto "Endereço Reconhecido" (adicionar prefeitura de BH)
-- [x] Atualizar logo/nome na Navbar e Footer
-
-## Ajustes v3
-- [x] Adicionar CNPJ 59.267.954/0001-08 no Footer
-
-## Sistema de E-mails (v4)
-- [x] Criar templates de e-mail simples para testes
-- [x] Criar página de questionário/cadastro de empresa (/cadastro)
-- [x] Integrar Resend API para envio de e-mails automáticos
-- [x] Configurar e-mail para cliente após compra (confirmação + manual + link questionário)
-- [x] Configurar e-mail para vendedor após compra (dados do cliente)
-- [x] Configurar e-mail para contador após questionário (dados para registro)
-- [x] Configurar e-mail para vendedor após questionário (confirmação)
+- [ ] Configurar PIX no dashboard Stripe (adicionar payment_method_types: ["pix"])
+- [ ] Configurar e-mail real (SMTP/Resend) para envio de confirmação ao cliente
+- [ ] Atualizar telefone, e-mail e CNPJ reais no Footer
+- [ ] Ativar sandbox Stripe antes de 26/05/2026
+- [ ] Publicar o site via botão Publish no painel

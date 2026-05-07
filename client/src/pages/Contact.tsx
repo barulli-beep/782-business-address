@@ -58,7 +58,7 @@ export default function Contact() {
       {/* Header */}
       <section
         className="py-16 md:py-24 text-center"
-        style={{ background: "linear-gradient(135deg, oklch(0.18 0.06 240) 0%, oklch(0.25 0.07 240) 100%)" }}
+        style={{ background: "linear-gradient(135deg, oklch(0.13 0.03 240) 0%, oklch(0.20 0.05 240) 100%)" }}
       >
         <div className="container">
           <motion.h1
@@ -100,7 +100,7 @@ export default function Contact() {
                       className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                       style={{ background: "oklch(0.22 0.055 240 / 0.08)" }}
                     >
-                      <MapPin className="w-4 h-4" style={{ color: "oklch(0.38 0.10 240)" }} />
+                      <MapPin className="w-4 h-4" style={{ color: "oklch(0.22 0.055 240)" }} />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">Endereço</p>
@@ -118,16 +118,16 @@ export default function Contact() {
                       className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                       style={{ background: "oklch(0.22 0.055 240 / 0.08)" }}
                     >
-                      <Mail className="w-4 h-4" style={{ color: "oklch(0.38 0.10 240)" }} />
+                      <Mail className="w-4 h-4" style={{ color: "oklch(0.22 0.055 240)" }} />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">E-mail</p>
                       <a
-                        href="mailto:contato@hubevolua.com"
+                        href="mailto:contato@782businessaddress.com.br"
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
-                        contato@hubevolua.com
+                        contato@782businessaddress.com.br
                       </a>
                     </div>
                   </div>
@@ -136,16 +136,16 @@ export default function Contact() {
                       className="w-9 h-9 rounded-lg flex items-center justify-center shrink-0"
                       style={{ background: "oklch(0.22 0.055 240 / 0.08)" }}
                     >
-                      <Phone className="w-4 h-4" style={{ color: "oklch(0.38 0.10 240)" }} />
+                      <Phone className="w-4 h-4" style={{ color: "oklch(0.22 0.055 240)" }} />
                     </div>
                     <div>
                       <p className="text-sm font-medium text-foreground">Telefone / WhatsApp</p>
                       <a
-                        href="tel:+5531993933934"
+                        href="tel:+5531999999999"
                         className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                         style={{ fontFamily: "Inter, sans-serif" }}
                       >
-                        (31) 9 9393-3934
+                        (31) 9 9999-9999
                       </a>
                     </div>
                   </div>
@@ -165,7 +165,7 @@ export default function Contact() {
                 <a
                   href="/planos"
                   className="inline-flex items-center gap-1.5 text-sm font-medium mt-3 transition-colors"
-                  style={{ color: "oklch(0.38 0.10 240)" }}
+                  style={{ color: "oklch(0.22 0.055 240)" }}
                 >
                   Ver planos →
                 </a>
@@ -182,7 +182,7 @@ export default function Contact() {
               <div className="bg-white rounded-2xl border border-border shadow-sm p-8">
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center py-12 text-center gap-4">
-                    <CheckCircle className="w-12 h-12" style={{ color: "oklch(0.65 0.14 145)" }} />
+                    <CheckCircle className="w-12 h-12" style={{ color: "oklch(0.72 0.12 75)" }} />
                     <h3 className="font-serif text-2xl font-semibold text-foreground">
                       Mensagem enviada!
                     </h3>
@@ -236,7 +236,7 @@ export default function Contact() {
                         </Label>
                         <Input
                           id="phone"
-                          placeholder="(31) 9 9393-3934"
+                          placeholder="(31) 9 9999-9999"
                           {...register("phone")}
                         />
                       </div>
@@ -261,7 +261,7 @@ export default function Contact() {
                           className={`w-10 h-5 rounded-full transition-colors relative ${
                             preferCall ? "" : "bg-muted"
                           }`}
-                          style={preferCall ? { background: "oklch(0.38 0.10 240)" } : {}}
+                          style={preferCall ? { background: "oklch(0.22 0.055 240)" } : {}}
                         >
                           <span
                             className={`absolute top-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${
@@ -283,7 +283,7 @@ export default function Contact() {
                         disabled={submitContact.isPending}
                         className="mt-2 w-full py-3 text-base font-semibold"
                         style={{
-                          background: "linear-gradient(135deg, oklch(0.38 0.10 240), oklch(0.25 0.07 240))",
+                          background: "linear-gradient(135deg, oklch(0.22 0.055 240), oklch(0.15 0.04 240))",
                           color: "white",
                           border: "none",
                         }}
