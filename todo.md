@@ -61,3 +61,12 @@
 
 ## Ajustes v3
 - [x] Adicionar CNPJ 59.267.954/0001-08 no Footer
+
+## Sistema de E-mails (v4)
+- [x] Criar templates de e-mail simples para testes
+- [x] Criar página de questionário/cadastro de empresa (/cadastro)
+- [x] Integrar Resend API para envio de e-mails automáticos
+- [x] Configurar e-mail para cliente após compra (confirmação + manual + link questionário)
+- [x] Configurar e-mail para vendedor após compra (dados do cliente)
+- [x] Configurar e-mail para contador após questionário (dados para registro)
+- [x] Configurar e-mail para vendedor após questionário (confirmação)
