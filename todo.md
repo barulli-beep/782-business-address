@@ -73,15 +73,15 @@
 
 
 ## Sistema de Salas Sequenciais (v5)
-- [ ] Adicionar coluna `roomNumber` na tabela `orders`
-- [ ] Criar função para gerar número de sala sequencial
-- [ ] Atualizar webhook para atribuir sala ao criar ordem
-- [ ] Incluir número da sala no e-mail de confirmação
-- [ ] Incluir número da sala na página de sucesso
-- [ ] Testar geração sequencial de salas (Sl 01, Sl 02, etc)
+- [x] Adicionar coluna `roomNumber` na tabela `orders`
+- [x] Criar função para gerar número de sala sequencial
+- [x] Atualizar webhook para atribuir sala ao criar ordem
+- [x] Incluir número da sala no e-mail de confirmação
+- [x] Incluir número da sala na página de sucesso
+- [x] Testar geração sequencial de salas (Sl 01, Sl 02, etc)
 
 ## Diagnóstico de E-mails (v5)
-- [ ] Verificar se RESEND_API_KEY foi salva corretamente
-- [ ] Testar envio de e-mail com Resend diretamente
-- [ ] Verificar logs do servidor para erros
-- [ ] Corrigir integração se necessário
+- [x] Verificar se RESEND_API_KEY foi salva corretamente
+- [x] Testar envio de e-mail com Resend diretamente
+- [x] Verificar logs do servidor para erros
+- [x] Corrigir integração se necessário
