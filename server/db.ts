@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, orders, contactRequests, InsertOrder, InsertContactRequest } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -80,7 +80,7 @@ export async function getOrderById(id: number) {
 export async function updateOrderStatus(
   stripeSessionId: string,
   status: "paid" | "cancelled" | "refunded",
-  extra?: { stripePaymentIntentId?: string; paymentMethod?: string; paidAt?: Date }
+  extra?: { stripePaymentIntentId?: string; paymentMethod?: string; paidAt?: Date; roomNumber?: number }
 ) {
   const db = await getDb();
   if (!db) throw new Error("Database not available");
@@ -91,8 +91,36 @@ export async function updateOrderStatus(
       ...(extra?.stripePaymentIntentId ? { stripePaymentIntentId: extra.stripePaymentIntentId } : {}),
       ...(extra?.paymentMethod ? { paymentMethod: extra.paymentMethod } : {}),
       ...(extra?.paidAt ? { paidAt: extra.paidAt } : {}),
+      ...(extra?.roomNumber ? { roomNumber: extra.roomNumber } : {}),
     })
     .where(eq(orders.stripeSessionId, stripeSessionId));
+}
+
+// --- Contact Requests ---
+
+// --- Room Numbering ---
+
+export async function getNextRoomNumber(): Promise<number> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  try {
+    // Get the maximum room number currently assigned
+    const result = await db
+      .select({ maxRoom: sql<number>`MAX(${orders.roomNumber})` })
+      .from(orders);
+    
+    const maxRoom = result[0]?.maxRoom || 0;
+    return maxRoom + 1;
+  } catch (error) {
+    console.error("[Database] Failed to get next room number:", error);
+    throw error;
+  }
+}
+
+export function formatRoomNumber(roomNumber: number | null | undefined): string {
+  if (!roomNumber) return "";
+  return `Sl ${String(roomNumber).padStart(2, "0")}`;
 }
 
 // --- Contact Requests ---

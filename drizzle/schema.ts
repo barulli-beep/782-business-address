@@ -45,6 +45,7 @@ export const orders = mysqlTable("orders", {
   paymentMethod: varchar("paymentMethod", { length: 50 }),
   // Metadata
   mailboxNumber: varchar("mailboxNumber", { length: 20 }),
+  roomNumber: int("roomNumber").default(0),
   notes: text("notes"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
@@ -53,6 +54,12 @@ export const orders = mysqlTable("orders", {
 
 export type Order = typeof orders.$inferSelect;
 export type InsertOrder = typeof orders.$inferInsert;
+
+// Helper to format room number as "Sl XX"
+export function formatRoomNumber(roomNumber: number | null | undefined): string {
+  if (!roomNumber) return "";
+  return `Sl ${String(roomNumber).padStart(2, "0")}`;
+}
 
 // Contact requests: pre-sale inquiries
 export const contactRequests = mysqlTable("contact_requests", {
