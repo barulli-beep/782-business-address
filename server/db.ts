@@ -1,4 +1,4 @@
-import { eq, sql } from "drizzle-orm";
+import { eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, orders, contactRequests, InsertOrder, InsertContactRequest } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -55,37 +55,6 @@ export async function getUserByOpenId(openId: string) {
 }
 
 // --- Orders ---
-
-/**
- * Get the next sequential room number (Sl 01, Sl 02, etc)
- * Returns the next available room number based on the highest paid order
- * 
- * Note: In production with high concurrency, consider:
- * 1. Using a dedicated sequence table with AUTO_INCREMENT
- * 2. Implementing database-level locking (SELECT ... FOR UPDATE)
- * 3. Using Stripe metadata to store assigned room numbers
- */
-export async function getNextRoomNumber(): Promise<number> {
-  const db = await getDb();
-  if (!db) throw new Error("Database not available");
-  
-  try {
-    // Get the highest room number currently in use among paid orders
-    const result = await db
-      .select({ maxRoom: sql<number>`MAX(roomNumber)` })
-      .from(orders)
-      .where(eq(orders.status, "paid"));
-    
-    const maxRoom = result[0]?.maxRoom || 0;
-    const nextRoom = maxRoom + 1;
-    
-    console.log(`[Database] Next room number: ${nextRoom} (max: ${maxRoom})`);
-    return nextRoom;
-  } catch (error) {
-    console.error("[Database] Error getting next room number:", error);
-    throw error;
-  }
-}
 
 export async function createOrder(data: InsertOrder) {
   const db = await getDb();

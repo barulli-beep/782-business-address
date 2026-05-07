@@ -44,7 +44,6 @@ export const orders = mysqlTable("orders", {
   stripePaymentIntentId: varchar("stripePaymentIntentId", { length: 255 }),
   paymentMethod: varchar("paymentMethod", { length: 50 }),
   // Metadata
-  roomNumber: int("roomNumber").notNull().default(0), // Sequential room number (Sl 01, Sl 02, etc)
   mailboxNumber: varchar("mailboxNumber", { length: 20 }),
   notes: text("notes"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),

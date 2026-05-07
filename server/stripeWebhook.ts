@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import type { Express, Request, Response } from "express";
 import express from "express";
-import { updateOrderStatus, getOrderByStripeSession, getNextRoomNumber } from "./db";
+import { updateOrderStatus, getOrderByStripeSession } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { sendEmail } from "./_core/email";
 import { emailTemplates } from "./emailTemplates";
@@ -16,10 +16,8 @@ function buildClientEmail(order: {
   planPrice: string | number;
   companyName?: string | null;
   mailboxNumber?: string | null;
-  roomNumber?: number;
 }): string {
   const price = Number(order.planPrice).toFixed(2).replace(".", ",");
-  const roomDisplay = order.roomNumber ? `Sl ${String(order.roomNumber).padStart(2, "0")}` : "";
   return `
 Olá, ${order.fullName}!
 
@@ -35,7 +33,7 @@ Seu cadastro foi realizado com sucesso na 782 Business Address. ✅
 
 ${order.fullName}${order.companyName ? ` / ${order.companyName}` : ""}
 782 Business Address
-Rua Conde de Linhares, 782${roomDisplay ? ` - ${roomDisplay}` : ""}
+Rua Conde de Linhares, 782
 Belo Horizonte – MG, CEP: 30000-000
 ${order.mailboxNumber ? `Caixa Postal: ${order.mailboxNumber}` : ""}
 
@@ -81,12 +79,10 @@ function buildOwnerNotification(
     planName: string;
     planPrice: string | number;
     companyName?: string | null;
-    roomNumber?: number;
   },
   sessionId: string
 ): string {
   const price = Number(order.planPrice).toFixed(2).replace(".", ",");
-  const roomDisplay = order.roomNumber ? `Sl ${String(order.roomNumber).padStart(2, "0")}` : "Pendente";
   return `
 **🆕 NOVO CLIENTE CONFIRMADO**
 
@@ -96,7 +92,6 @@ function buildOwnerNotification(
 **E-mail:** ${order.email}
 **Empresa:** ${order.companyName || "Não informado"}
 **Plano:** ${order.planName} — R$ ${price}/mês
-**Sala Atribuída:** ${roomDisplay}
 **Session Stripe:** ${sessionId}
 
 ---
@@ -151,25 +146,6 @@ export function registerStripeWebhook(app: Express) {
             const session = event.data.object as Stripe.Checkout.Session;
             const sessionId = session.id;
 
-            // Fetch the order first to check if it's already been processed
-            const existingOrder = await getOrderByStripeSession(sessionId);
-            
-            // Check if order is already paid and has a room number (idempotency check)
-            if (existingOrder && existingOrder.status === "paid" && existingOrder.roomNumber > 0) {
-              console.log(
-                `[Webhook] Order ${existingOrder.id} already processed with room Sl ${String(existingOrder.roomNumber).padStart(2, "0")}, skipping duplicate processing`
-              );
-              return res.json({ received: true });
-            }
-
-            // Assign room number only if not already assigned
-            let roomNumber = existingOrder?.roomNumber || 0;
-            if (roomNumber === 0) {
-              roomNumber = await getNextRoomNumber();
-              console.log(`[Webhook] Assigned room number ${roomNumber} to order ${existingOrder?.id}`);
-            }
-
-            // Update order status to paid
             await updateOrderStatus(sessionId, "paid", {
               stripePaymentIntentId:
                 typeof session.payment_intent === "string"
@@ -178,18 +154,6 @@ export function registerStripeWebhook(app: Express) {
               paidAt: new Date(),
             });
 
-            // Update order with room number if it wasn't already set
-            if (existingOrder && existingOrder.roomNumber === 0) {
-              const db = await import("./db").then(m => m.getDb());
-              if (db) {
-                const { orders } = await import("../drizzle/schema");
-                const { eq } = await import("drizzle-orm");
-                await db.update(orders).set({ roomNumber }).where(eq(orders.id, existingOrder.id));
-                console.log(`[Webhook] Updated order ${existingOrder.id} with room number ${roomNumber}`);
-              }
-            }
-
-            // Fetch updated order with room number
             const order = await getOrderByStripeSession(sessionId);
             if (order) {
               // Notify owner via system notification
@@ -203,9 +167,8 @@ export function registerStripeWebhook(app: Express) {
                 const questionnairLink = 'https://busaddress-an8uw3gx.manus.space/cadastro';
                 await sendEmail({
                   to: order.email,
-                  ...emailTemplates.customerConfirmation(order.fullName, order.planName, questionnairLink, order.roomNumber),
+                  ...emailTemplates.customerConfirmation(order.fullName, order.planName, questionnairLink),
                 });
-                console.log(`[Webhook] Customer email sent to ${order.email}`);
               } catch (emailErr) {
                 console.error('[Webhook] Failed to send customer email:', emailErr);
               }
@@ -214,15 +177,14 @@ export function registerStripeWebhook(app: Express) {
               try {
                 await sendEmail({
                   to: 'contato@hubevolua.com',
-                  ...emailTemplates.sellerConfirmation(order.fullName, order.email, order.phone, order.planName, order.roomNumber),
+                  ...emailTemplates.sellerConfirmation(order.fullName, order.email, order.phone, order.planName),
                 });
-                console.log(`[Webhook] Seller email sent`);
               } catch (emailErr) {
                 console.error('[Webhook] Failed to send seller email:', emailErr);
               }
 
               console.log(
-                `[Webhook] Order ${order.id} confirmed for ${order.email} with room Sl ${String(order.roomNumber || 0).padStart(2, "0")}`
+                `[Webhook] Order ${order.id} confirmed for ${order.email}`
               );
             }
             break;
