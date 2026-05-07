@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { InsertUser, users, orders, contactRequests, InsertOrder, InsertContactRequest } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -55,6 +55,23 @@ export async function getUserByOpenId(openId: string) {
 }
 
 // --- Orders ---
+
+/**
+ * Get the next sequential room number (Sl 01, Sl 02, etc)
+ */
+export async function getNextRoomNumber(): Promise<number> {
+  const db = await getDb();
+  if (!db) throw new Error("Database not available");
+  
+  // Get the highest room number currently in use
+  const result = await db
+    .select({ maxRoom: sql<number>`MAX(roomNumber)` })
+    .from(orders)
+    .where(eq(orders.status, "paid"));
+  
+  const maxRoom = result[0]?.maxRoom || 0;
+  return maxRoom + 1;
+}
 
 export async function createOrder(data: InsertOrder) {
   const db = await getDb();

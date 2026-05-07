@@ -70,3 +70,18 @@
 - [x] Configurar e-mail para vendedor após compra (dados do cliente)
 - [x] Configurar e-mail para contador após questionário (dados para registro)
 - [x] Configurar e-mail para vendedor após questionário (confirmação)
+
+
+## Sistema de Salas Sequenciais (v5)
+- [ ] Adicionar coluna `roomNumber` na tabela `orders`
+- [ ] Criar função para gerar número de sala sequencial
+- [ ] Atualizar webhook para atribuir sala ao criar ordem
+- [ ] Incluir número da sala no e-mail de confirmação
+- [ ] Incluir número da sala na página de sucesso
+- [ ] Testar geração sequencial de salas (Sl 01, Sl 02, etc)
+
+## Diagnóstico de E-mails (v5)
+- [ ] Verificar se RESEND_API_KEY foi salva corretamente
+- [ ] Testar envio de e-mail com Resend diretamente
+- [ ] Verificar logs do servidor para erros
+- [ ] Corrigir integração se necessário

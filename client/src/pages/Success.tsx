@@ -74,6 +74,14 @@ export default function Success() {
                     R$ {Number(order.planPrice).toFixed(2).replace(".", ",")}
                   </span>
                 </div>
+                {order.roomNumber && (
+                  <div className="flex justify-between border-t border-white/10 pt-3 mt-3">
+                    <span className="text-sm text-white/50" style={{ fontFamily: "Inter, sans-serif" }}>Sala Atribuída</span>
+                    <span className="text-sm font-bold" style={{ color: "oklch(0.65 0.14 145)", fontFamily: "Inter, sans-serif" }}>
+                      Sl {String(order.roomNumber).padStart(2, "0")}
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           )}
@@ -99,7 +107,7 @@ export default function Success() {
               <div>
                 <p className="text-sm font-medium text-foreground">Seu endereço fiscal</p>
                 <p className="text-xs text-muted-foreground mt-0.5" style={{ fontFamily: "Inter, sans-serif" }}>
-                  Rua Conde de Linhares, 782 — Belo Horizonte/MG
+                  Rua Conde de Linhares, 782{order?.roomNumber ? ` - Sl ${String(order.roomNumber).padStart(2, "0")}` : ""} — Belo Horizonte/MG
                 </p>
               </div>
             </div>

@@ -1,7 +1,7 @@
 import Stripe from "stripe";
 import type { Express, Request, Response } from "express";
 import express from "express";
-import { updateOrderStatus, getOrderByStripeSession } from "./db";
+import { updateOrderStatus, getOrderByStripeSession, getNextRoomNumber } from "./db";
 import { notifyOwner } from "./_core/notification";
 import { sendEmail } from "./_core/email";
 import { emailTemplates } from "./emailTemplates";
@@ -16,8 +16,10 @@ function buildClientEmail(order: {
   planPrice: string | number;
   companyName?: string | null;
   mailboxNumber?: string | null;
+  roomNumber?: number;
 }): string {
   const price = Number(order.planPrice).toFixed(2).replace(".", ",");
+  const roomDisplay = order.roomNumber ? `Sl ${String(order.roomNumber).padStart(2, "0")}` : "";
   return `
 Olá, ${order.fullName}!
 
@@ -33,7 +35,7 @@ Seu cadastro foi realizado com sucesso na 782 Business Address. ✅
 
 ${order.fullName}${order.companyName ? ` / ${order.companyName}` : ""}
 782 Business Address
-Rua Conde de Linhares, 782
+Rua Conde de Linhares, 782${roomDisplay ? ` - ${roomDisplay}` : ""}
 Belo Horizonte – MG, CEP: 30000-000
 ${order.mailboxNumber ? `Caixa Postal: ${order.mailboxNumber}` : ""}
 
@@ -79,10 +81,12 @@ function buildOwnerNotification(
     planName: string;
     planPrice: string | number;
     companyName?: string | null;
+    roomNumber?: number;
   },
   sessionId: string
 ): string {
   const price = Number(order.planPrice).toFixed(2).replace(".", ",");
+  const roomDisplay = order.roomNumber ? `Sl ${String(order.roomNumber).padStart(2, "0")}` : "Pendente";
   return `
 **🆕 NOVO CLIENTE CONFIRMADO**
 
@@ -92,6 +96,7 @@ function buildOwnerNotification(
 **E-mail:** ${order.email}
 **Empresa:** ${order.companyName || "Não informado"}
 **Plano:** ${order.planName} — R$ ${price}/mês
+**Sala Atribuída:** ${roomDisplay}
 **Session Stripe:** ${sessionId}
 
 ---
@@ -146,6 +151,9 @@ export function registerStripeWebhook(app: Express) {
             const session = event.data.object as Stripe.Checkout.Session;
             const sessionId = session.id;
 
+            // Assign next room number
+            const roomNumber = await getNextRoomNumber();
+
             await updateOrderStatus(sessionId, "paid", {
               stripePaymentIntentId:
                 typeof session.payment_intent === "string"
@@ -154,6 +162,19 @@ export function registerStripeWebhook(app: Express) {
               paidAt: new Date(),
             });
 
+            // Update order with room number
+            const orderBeforeUpdate = await getOrderByStripeSession(sessionId);
+            if (orderBeforeUpdate) {
+              // Update the order with room number
+              const db = await import("./db").then(m => m.getDb());
+              if (db) {
+                const { orders } = await import("../drizzle/schema");
+                const { eq } = await import("drizzle-orm");
+                await db.update(orders).set({ roomNumber }).where(eq(orders.id, orderBeforeUpdate.id));
+              }
+            }
+
+            // Fetch updated order with room number
             const order = await getOrderByStripeSession(sessionId);
             if (order) {
               // Notify owner via system notification
@@ -167,7 +188,7 @@ export function registerStripeWebhook(app: Express) {
                 const questionnairLink = 'https://busaddress-an8uw3gx.manus.space/cadastro';
                 await sendEmail({
                   to: order.email,
-                  ...emailTemplates.customerConfirmation(order.fullName, order.planName, questionnairLink),
+                  ...emailTemplates.customerConfirmation(order.fullName, order.planName, questionnairLink, order.roomNumber),
                 });
               } catch (emailErr) {
                 console.error('[Webhook] Failed to send customer email:', emailErr);
@@ -177,14 +198,14 @@ export function registerStripeWebhook(app: Express) {
               try {
                 await sendEmail({
                   to: 'contato@hubevolua.com',
-                  ...emailTemplates.sellerConfirmation(order.fullName, order.email, order.phone, order.planName),
+                  ...emailTemplates.sellerConfirmation(order.fullName, order.email, order.phone, order.planName, order.roomNumber),
                 });
               } catch (emailErr) {
                 console.error('[Webhook] Failed to send seller email:', emailErr);
               }
 
               console.log(
-                `[Webhook] Order ${order.id} confirmed for ${order.email}`
+                `[Webhook] Order ${order.id} confirmed for ${order.email} with room Sl ${String(order.roomNumber || 0).padStart(2, "0")}`
               );
             }
             break;
